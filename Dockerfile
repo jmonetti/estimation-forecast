@@ -6,9 +6,10 @@ RUN yum install -y epel-release; yum clean all
 
 RUN yum install -y python-pip; yum clean all
 
-ADD . src/
-RUN cd src/; ls -ls;pip install -r requirements.txt
+ADD . forecast/
+RUN cd forecast/; ls -ls;pip install -r requirements.txt
 
-EXPOSE 8080
+EXPOSE 5000
 
-CMD ["python", "/forecast/server.py"]
+WORKDIR /forecast
+CMD python forecast/server.py
