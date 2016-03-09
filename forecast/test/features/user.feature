@@ -5,19 +5,5 @@ Feature: Handle storing, retrieving and deleting project data
     | Lion Project | 12     |
     | Ads Project  | 22     |
     When the client request GET /projects
-    The the response status should be "200"
+    The response status should be "200 OK"
     And the json response should be and array with 2 "name" elements
-    And the response should be JSON:
-    """
-    [
-      {
-        "name": "Lion Project",
-        "sprints": 12
-      },
-      {
-        "name": "Ads Project",
-        "sprints": 22
-      }
-    ]
-    """
-
