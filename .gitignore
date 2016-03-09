@@ -2,4 +2,4 @@
 *.pyc
 *.cfg
 venv/
-.idea/workspace.xml
+.idea/
