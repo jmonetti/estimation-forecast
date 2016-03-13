@@ -1,23 +1,28 @@
 Feature: Handle storing, retrieving and deleting project data
+  @Get @Positive
   Scenario: Retrieve projects details
-    Given the client uses the forecast API
+    Given I access to the resource url "/projects"
     And the system knows about a set of projects
     |  name        | sprints|
     | Lion Project | 12     |
     | Ads Project  | 22     |
-    When the client request GET /projects
-    Then the response status should be "200 OK"
+    When I retrieve the results
+    Then the status should be "200 OK"
     And the json response should be and array with 2 "name" elements
 
+  @Post @Positive
   Scenario: Add project
-    Given the client use the forecast API
-    When the client request POST projects/ with the following JSON:
+    Given I access to the resource url "/projects/"
+    And the system has no projects stored
+    And I provide details for a project:
+    |  name        | sprints|
+    | New Project  | 10     |
+    When I retrieve the results
+    Then the response status should be "201 OK"
+    And the json response should be:
     """
     {
       "name": "New project",
       "sprints": 10
     }
     """
-    Then the response status should be "200 OK"
-    And the json response should be and array with 1 "name" elements
-    
