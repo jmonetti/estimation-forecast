@@ -15,5 +15,3 @@ class DataAccess():
 
     def get_projects(self):
         return self.projects
-
-
