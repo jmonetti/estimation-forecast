@@ -15,3 +15,6 @@ class DataAccess():
 
     def get_projects(self):
         return self.projects
+
+    def reset_projects(self):
+        self.projects = []
