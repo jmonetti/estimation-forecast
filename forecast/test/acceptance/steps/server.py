@@ -4,7 +4,7 @@ from behave import given, when, then
 from webtest import TestApp
 
 from forecast.data_access.data_access import DataAccess
-from forecast.server import app
+from forecast.app import app
 
 
 @given(u'I access to the resource url "{resource_url}"')

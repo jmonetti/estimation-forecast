@@ -46,4 +46,5 @@ def projects():
     ), 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Listening to all public IPs - TODO: diable debug mode
+    app.run(host="0.0.0.0", debug=True)
