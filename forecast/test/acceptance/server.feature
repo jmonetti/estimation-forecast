@@ -30,24 +30,27 @@ Feature: Handle storing, retrieving and deleting project data
       "sprints": 10
     }
     """
-
     
   @Put @Positive
   Scenario: Update project
-    Given I access to the resource url "/projects/"
+    Given I access to the resource url "/projects"
     And the system knows about a set of projects
-      |  name        | sprints|
-      | Lion Project | 12     |
-      And I provide a valid project id
-      And I provide details for a project:
-      |  name            | sprints|
-      | Updated Project  | 10     |
-      When I retrieve the results
-      Then the response status should be "201 OK"
-      And the json response should be:
-      """
-      {
-        "name": "Updated project",
-        "sprints": 10
-      }
-      """
+      | id |    name        | sprints|
+      | 1  | Lion Project   | 12     |
+    And I provide a valid project id
+    And I provide data for a project:
+    """
+    {
+      "name": "update",
+      "sprints": 10
+    }
+    """
+    When I update the project with id 1
+    Then the response status should be "201 OK"
+    And the json response should be:
+    """
+    {
+      "name": "Updated project",
+      "sprints": 10
+    }
+    """

@@ -18,3 +18,8 @@ class DataAccess():
 
     def reset_projects(self):
         self.projects = []
+
+    # def update_project(self, id, updated_project):
+    #     for project in self.projects:
+    #         if project.get('id') == id:
+

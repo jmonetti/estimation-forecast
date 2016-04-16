@@ -40,6 +40,16 @@ def step_impl(context):
     )
 
 
+@when(u'I update the project with id {project_id}')
+def step_impl(context, project_id):
+    context.app = TestApp(app)
+    context.response = context.app.put(
+        context.resource_url,
+        context.project
+        # TODO see how to send the params an querystring properly
+    )
+
+
 @then(u'the status should be "{status_code}"')
 def step_impl(context, status_code):
     assert context.response.status == status_code
@@ -69,4 +79,21 @@ def step_impl(context):
 @then(u'the json response should be')
 def step_impl(context):
     assert json.loads(context.text) == json.loads(context.response.body)
+
+
+@given(u'I provide a valid project {id}')
+def step_impl(context, id):
+    assert id is not None
+    context.id = id
+
+
+@given(u'I provide details for a project')
+def step_impl(context):
+    assert context.text is not None, "REQUIRE: text"
+    context.project = context.text
+
+
+@then(u'the response status should be "201 OK"')
+def step_impl(context):
+    raise NotImplementedError(u'STEP: Then the response status should be "201 OK"')
 
